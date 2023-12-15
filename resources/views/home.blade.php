@@ -114,14 +114,15 @@
 </script>
 <script>
     const ctx = document.getElementById('myChart');
-  
+    let dd = @json(\App\Models\Report::selectRaw('YEAR(created_at) as year')->selectRaw('count(*) as count')->groupByRaw('YEAR(created_at)')->orderByRaw('YEAR(created_at) asc')->get()); 
+    console.log(dd); 
     new Chart(ctx, {
       type: 'line',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: dd.map(e => e.year),
         datasets: [{
           label: 'Reports',
-          data: [12, 19, 3, 5, 2, 3],
+          data: dd.map(e => e.count),
           borderWidth: 1
         }]
       },
