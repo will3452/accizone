@@ -157,7 +157,7 @@
                     Enable Voice Alert?
                 </p>
             </div>
-            <div class="p-2 rounded bg-white mt-2 h-screen overflow-y">
+            <div class="p-2 rounded bg-white mt-2 h-screen overflow-y-auto">
                 <h1 class="text-center font-mono">Near accident location.</h1>
                 <template x-for="item in nearby" :key="item.id">
                 <div ">
