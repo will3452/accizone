@@ -150,7 +150,14 @@
                     Longitude: <span class="font-bold" x-text="currentLng"></span>
                 </div>
             </div>
-            <div class="p-2 rounded bg-white mt-2">
+            
+            <div class="flex justify-between mt-2 text-xs">
+                <input x-model="check" type="checkbox">
+                <p>
+                    Enable Voice Alert?
+                </p>
+            </div>
+            <div class="p-2 rounded bg-white mt-2 h-screen overflow-y">
                 <h1 class="text-center font-mono">Near accident location.</h1>
                 <template x-for="item in nearby" :key="item.id">
                 <div ">
@@ -168,12 +175,6 @@
                     </div>
                 </div>
                 </template>
-            </div>
-            <div class="flex justify-between mt-2 text-xs">
-                <input x-model="check" type="checkbox">
-                <p>
-                    Enable Voice Alert?
-                </p>
             </div>
         </div>
     </div>
