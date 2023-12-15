@@ -74,7 +74,7 @@
                     .addTo(map); 
             } 
             nearby = reports.filter( r => {
-                return calculateDistance(r.lat, r.lng, lat, lng) <= 10; 
+                return calculateDistance(r.lat, r.lng, lat, lng) <= 2; 
             })
             if (nearby.length && check) {
                 speakText(); 
