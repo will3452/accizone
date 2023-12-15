@@ -57,7 +57,7 @@
                 </div>
                 <div class="card-body text-center">
                     <div class="dashboard-count">
-                        {{ \App\Models\AccessLog::count() }}
+                        {{ \App\Models\AccessLog::whereUserId(auth()->id())->count() }}
                     </div>
                     <div>
                         <small>
