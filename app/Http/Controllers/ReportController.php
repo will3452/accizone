@@ -28,7 +28,7 @@ class ReportController extends Controller
 
         AccessLog::create([
             'user_id' => auth()->id(), 
-            'info' => 'Submit Request', 
+            'info' => 'Submit Report', 
         ]); 
 
         $data = $request->validate([
