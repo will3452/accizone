@@ -3022,25 +3022,26 @@ class DataSeeder extends Seeder
                 'created_at' => now()->parse($d['dateCommitted']), 
             ]);
 
-            $reportType = [
-                'Fatal',
-                'Minor',
-                'Serious',
-                'Moderate',
-            ];
-
-            foreach($reportType as $r) {
-                ReportType::create([
-                    'type' => $r
-                ]);
-            }
-
-            User::create([
-                'email' => 'super@admin.com',
-                'password' => bcrypt('password'),
-                'type' => User::TYPE_ADMIN, 
-                'name' => 'Administrator', 
-            ]); 
         }
+        
+        $reportType = [
+            'Fatal',
+            'Minor',
+            'Serious',
+            'Moderate',
+        ];
+
+        foreach($reportType as $r) {
+            ReportType::create([
+                'type' => $r
+            ]);
+        }
+
+        User::create([
+            'email' => 'super@admin.com',
+            'password' => bcrypt('password'),
+            'type' => User::TYPE_ADMIN, 
+            'name' => 'Administrator', 
+        ]); 
     }
 }
