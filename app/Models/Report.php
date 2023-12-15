@@ -19,6 +19,7 @@ class Report extends Model
         'lat',
         'lng',
         'remarks',
+        'created_at', 
     ]; 
 
     public function user () {

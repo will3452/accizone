@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Report;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -3017,7 +3018,15 @@ class DataSeeder extends Seeder
                 'lat' => $d['latitude'],
                 'lng' => $d['longitude'], 
                 'type' => $d['severity'],
+                'created_at' => now()->parse($d['dateCommitted']), 
             ]);
+
+            User::create([
+                'email' => 'super@admin.com',
+                'password' => bcrypt('password'),
+                'type' => User::TYPE_ADMIN, 
+                'name' => 'Administrator', 
+            ]); 
         }
     }
 }
