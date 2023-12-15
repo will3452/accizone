@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,3 +43,44 @@ Route::get('/show-route/{lat}/{lng}', function (Request $request, $lat, $lng) {
 })->name('routes');
 
 Route::view('/map', 'map'); 
+
+Route::get('/profile/{user}', function (User $user) {
+    AccessLog::create([
+        'user_id' => auth()->id(), 
+        'info' => 'Visit profile', 
+    ]); 
+    return view('profile', compact('user')); 
+}); 
+
+Route::post('/update/{user}', function (Request $request, User $user) {
+    $data = []; 
+    AccessLog::create([
+        'user_id' => auth()->id(), 
+        'info' => 'Update profile', 
+    ]); 
+    if ($request->has('email')) {
+        $data['email'] = $request->email;
+    }
+
+    if ($request->has('password')) {
+        $data['password'] = bcrypt($request->password); 
+    }
+
+    if ($request->has('gender')) {
+        $data['gender'] = $request->gender; 
+    }
+
+    if ($request->has('address')) {
+        $data['address'] = $request->address;
+    }
+
+    if ($request->has('name')) {
+        $data['name'] = $request->name; 
+    }
+
+    $user->update($data); 
+
+    alert()->success('Updated successfully!'); 
+
+    return back(); 
+}); 

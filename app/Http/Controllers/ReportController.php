@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Report;
+use App\Models\AccessLog;
 use Illuminate\Http\Request;
 use App\Notifications\ReportHasBeenSubmitted;
 use Laravel\Nova\Notifications\NovaNotification;
@@ -12,6 +13,10 @@ class ReportController extends Controller
 {
     public function index () {
         $reports = Report::latest()->get(); 
+        AccessLog::create([
+            'user_id' => auth()->id(), 
+            'info' => 'View reports', 
+        ]); 
         return view('report.index', compact('reports')); 
     }
 
@@ -21,6 +26,10 @@ class ReportController extends Controller
 
     public function store(Request $request) {
 
+        AccessLog::create([
+            'user_id' => auth()->id(), 
+            'info' => 'Submit Request', 
+        ]); 
 
         $data = $request->validate([
             'descriptions' => 'required',
