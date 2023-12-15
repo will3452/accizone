@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Report;
+use App\Models\ReportType;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -3020,6 +3021,19 @@ class DataSeeder extends Seeder
                 'type' => $d['severity'],
                 'created_at' => now()->parse($d['dateCommitted']), 
             ]);
+
+            $reportType = [
+                'Fatal',
+                'Minor',
+                'Serious',
+                'Moderate',
+            ];
+
+            foreach($reportType as $r) {
+                ReportType::create([
+                    'type' => $r
+                ]);
+            }
 
             User::create([
                 'email' => 'super@admin.com',
