@@ -97,8 +97,9 @@
                 <div class="mb-3">
                     <label for="" class="form-label">Report Type (required)</label>
                     <select class="form-select" name="type" id="" required>
-                        <option value="type A">Type A</option>
-                        <option value="type B">Type B</option>
+                        @foreach (\App\Models\ReportType::get() as $item)
+                            <option value="{{$item->type}}">{{$item->type}}</option>
+                        @endforeach
                     </select>
                 </div>
 
