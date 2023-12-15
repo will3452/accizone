@@ -25,8 +25,7 @@
     <style>
         .accident-marker {
             width: 25px;
-            height: 25px;
-            background: rgba(255, 17, 17, 0.619); 
+            height: 25px; 
             border-radius: 100%; 
         }
     </style>
@@ -65,6 +64,11 @@
             for(let r of reports) {
                 const el = document.createElement('div')
                 el.className = 'accident-marker'; 
+                let bg = 'red';
+                if (r.type == 'Serious') bg = 'orange';
+                if (r.type == 'Moderate') bg = 'yellow';
+                if(r.type == 'Minor') bg = 'green'; 
+                el.style.background = bg; 
                 let _marker = new mapboxgl.Marker(el)
                     .setLngLat([r.lng, r.lat])
                     .addTo(map); 
