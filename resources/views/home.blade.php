@@ -53,11 +53,11 @@
         </div><div class="col-12 col-md-4">
             <div class="card">
                 <div class="card-header">
-                    Visits
+                    Activity
                 </div>
                 <div class="card-body text-center">
                     <div class="dashboard-count">
-                        {{ \App\Models\Report::count() }}
+                        {{ \App\Models\AccessLog::count() }}
                     </div>
                     <div>
                         <small>
